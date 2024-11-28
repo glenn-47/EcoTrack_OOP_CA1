@@ -3,20 +3,25 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package EcoTrack;
-
+import javax.swing.JOptionPane;
 /**
  *
  * @author msi410
  */
 public class loginGUI extends javax.swing.JFrame {
+ private final AuthManager authManager;
 
     /**
      * Creates new form loginGUI
      */
     public loginGUI() {
         initComponents();
+       authManager = new AuthManager();
     }
+  
+    
 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -113,10 +118,13 @@ public class loginGUI extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
       
-    
-        registerGUI myGUI = new registerGUI();
+        
+        
+        
+        
+        registerGUI myGUI = new registerGUI();  
         myGUI.setVisible(true);
-         this.dispose();
+        this.dispose();      
     }//GEN-LAST:event_jButton2ActionPerformed
 
     
@@ -124,10 +132,21 @@ public class loginGUI extends javax.swing.JFrame {
     
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        MainMenuGUI myGUI = new MainMenuGUI();
-        myGUI.setVisible(true);
-         this.dispose();
+        String username = jTextField1.getText(); // Get username input
+        String password = new String(jPasswordField1.getPassword()); // Get password input
+
+        // Validate credentials
+        if (authManager.validateUser(username, password)) {
+            JOptionPane.showMessageDialog(this, "Login successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
+
+            // Open the Main Menu window
+            MainMenuGUI mainMenu = new MainMenuGUI();
+            mainMenu.setVisible(true);
+            this.dispose(); // Close the login window
+        } else {
+            JOptionPane.showMessageDialog(this, "Invalid username or password.", "Login Error", JOptionPane.ERROR_MESSAGE);
+        }
+    
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
