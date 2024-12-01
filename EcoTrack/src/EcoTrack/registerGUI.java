@@ -3,19 +3,23 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package EcoTrack;
-
+import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 /**
  *
  * @author msi410
  */
 public class registerGUI extends javax.swing.JFrame {
-
+ private final AuthManager authManager;
     /**
      * Creates new form registerGUI
      */
     public registerGUI() {
         initComponents();
+         authManager = new AuthManager(); // Instantiate AuthManager
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -148,9 +152,35 @@ public class registerGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-               loginGUI myGUI = new loginGUI();
-                myGUI.setVisible(true);
-                 this.dispose();
+               String username = jTextField2.getText(); // Get username from jTextField2
+    String password = jTextField3.getText(); // Correctly retrieve text from the JTextField
+
+    // Check if the username or password fields are empty
+    if (username.isEmpty() || password.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Please fill in both fields.", "Input Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    // Attempt to register the user
+    if (authManager.registerUser(username, password)) {
+        JOptionPane.showMessageDialog(this, "Registration successful! You can now log in.", "Success", JOptionPane.INFORMATION_MESSAGE);
+        new loginGUI().setVisible(true); // Open login screen
+        this.dispose(); // Close registration screen
+    } else {
+        JOptionPane.showMessageDialog(this, "Username already exists. Please choose another.", "Registration Error", JOptionPane.ERROR_MESSAGE);
+    }
+
+        // Attempt to register the user
+        /* Create and display the form */
+    java.awt.EventQueue.invokeLater(new Runnable() {
+    public void run() {
+        new loginGUI().setVisible(true); // Use 'new' keyword here to create an instance of registerGUI
+    }
+    });
+
+    // Action when Back to Login button is pressed
+                                             
+    
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
