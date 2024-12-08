@@ -14,13 +14,13 @@ public class AuthManager {
             return false;
         }
 
-        // Create new user with the provided details
+        
         userDatabase.put(username, new User(username, password, email, dateOfBirth));
         return true;
     }
 
     public User getUser(String username) {
-        return userDatabase.get(username); // Fetch the user details by username
+        return userDatabase.get(username);
     }
 
     public boolean validateUser(String username, String password) {

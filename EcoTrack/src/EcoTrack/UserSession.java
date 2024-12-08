@@ -6,14 +6,14 @@ package EcoTrack;
 
 /**
  *
- * @author msi410
+ * abdallah haouit
  */
 public class UserSession {
     private String username;
     private String email;
     private String dateOfBirth;
 
-    // Constructor to initialize user data
+    // Cmy constructor
     public UserSession(String username, String email, String dateOfBirth) {
         this.username = username;
         this.email = email;

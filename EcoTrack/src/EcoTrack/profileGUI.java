@@ -6,7 +6,7 @@ package EcoTrack;
 
 /**
  *
- * @author msi410
+ * @author abdallah haouit
  */
 public class profileGUI extends javax.swing.JFrame {
 private final UserSession userSession;
@@ -17,6 +17,11 @@ private final UserSession userSession;
         jTextField1.setText(userSession.getEmail());
         jTextField2.setText(userSession.getUsername());
         jTextField3.setText(userSession.getDateOfBirth());
+        
+        // i Set the text fields to be non-editable
+        jTextField1.setEditable(false); // Makes my email non-editable
+        jTextField2.setEditable(false); 
+        jTextField3.setEditable(false); 
     }
  
     
@@ -122,9 +127,7 @@ private final UserSession userSession;
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

@@ -6,7 +6,7 @@ package EcoTrack;
 
 /**
  *
- * @author msi410
+ * abdallah haouit
  */
 public class UserProfile {
      private String username;
@@ -19,7 +19,7 @@ public class UserProfile {
         this.dateOfBirth = dateOfBirth;
     }
 
-    // Getters and setters for the profile details
+    // Getters and setters for the profile detailsb
     public String getUsername() {
         return username;
     }
