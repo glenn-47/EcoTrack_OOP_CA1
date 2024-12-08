@@ -6,7 +6,7 @@ package EcoTrack;
 
 /**
  *
- * @author abdallah haouit
+ * @author abdallah haoui
  */
 public class ProfileManager {
     private UserProfile userProfile;
