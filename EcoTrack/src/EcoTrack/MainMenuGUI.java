@@ -9,14 +9,16 @@ package EcoTrack;
  * @author msi410
  */
 public class MainMenuGUI extends javax.swing.JFrame {
+ private UserSession userSession;  // Store the user session
 
-    /**
-     * Creates new form MainMenuGUI
-     */
-    public MainMenuGUI() {
+    public MainMenuGUI(UserSession userSession) {
+        this.userSession = userSession;
         initComponents();
     }
 
+   
+
+ 
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -147,11 +149,15 @@ public class MainMenuGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        profileGUI myGUI = new profileGUI();
+      profileGUI myGUI = new profileGUI(userSession);  // Pass user session to profileGUI
         myGUI.setVisible(true);
-        this.dispose();
+        this.dispose();  // Close MainMenuGUI
+    
+      
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -190,9 +196,10 @@ public class MainMenuGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-       loginGUI myGUI = new loginGUI();
-        myGUI.setVisible(true);
-         this.dispose();
+     AuthManager authManager = null;
+    loginGUI myGUI = new loginGUI(authManager); // Pass the shared instance
+    myGUI.setVisible(true);
+    this.dispose();
     }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
@@ -223,11 +230,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MainMenuGUI().setVisible(true);
-            }
-        });
+       
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

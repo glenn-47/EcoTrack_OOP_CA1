@@ -10,16 +10,16 @@ import javax.swing.JPasswordField;
  * @author msi410
  */
 public class registerGUI extends javax.swing.JFrame {
- private final AuthManager authManager;
-    /**
-     * Creates new form registerGUI
-     */
-    public registerGUI() {
+    private final AuthManager authManager; // Shared AuthManager
+
+    public registerGUI(AuthManager authManager) {
         initComponents();
-         authManager = new AuthManager(); // Instantiate AuthManager
+        this.authManager = authManager;
     }
-    
-    
+
+    private registerGUI() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -70,6 +70,12 @@ public class registerGUI extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setText("Username");
+
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton1.setText("Register");
@@ -146,42 +152,51 @@ public class registerGUI extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        loginGUI myGUI = new loginGUI();
-        myGUI.setVisible(true);
-         this.dispose();
+         loginGUI myGUI = new loginGUI(authManager); // Pass the shared instance
+    myGUI.setVisible(true);
+    this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-               String username = jTextField2.getText(); // Get username from jTextField2
-    String password = jTextField3.getText(); // Correctly retrieve text from the JTextField
+    String username = jTextField2.getText();
+    String password = jTextField3.getText();
+    String email = jTextField1.getText();
+    String dateOfBirth = jTextField4.getText();
 
-    // Check if the username or password fields are empty
-    if (username.isEmpty() || password.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Please fill in both fields.", "Input Error", JOptionPane.ERROR_MESSAGE);
+         // Check if the username or password fields are empty
+        if (username.isEmpty() || password.isEmpty() || email.isEmpty() || dateOfBirth.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Please fill in all fields.", "Input Error", JOptionPane.ERROR_MESSAGE);
         return;
-    }
-
-    // Attempt to register the user
-    if (authManager.registerUser(username, password)) {
+        }
+        // Attempt to register the user
+     if (authManager.registerUser(username, password, email, dateOfBirth)) {
         JOptionPane.showMessageDialog(this, "Registration successful! You can now log in.", "Success", JOptionPane.INFORMATION_MESSAGE);
-        new loginGUI().setVisible(true); // Open login screen
-        this.dispose(); // Close registration screen
+        
+        
+    loginGUI myGUI = new loginGUI(authManager); // Pass the shared instance
+    myGUI.setVisible(true);
+    this.dispose(); // Close registration screen
+    
     } else {
         JOptionPane.showMessageDialog(this, "Username already exists. Please choose another.", "Registration Error", JOptionPane.ERROR_MESSAGE);
     }
 
         // Attempt to register the user
         /* Create and display the form */
-    java.awt.EventQueue.invokeLater(new Runnable() {
+java.awt.EventQueue.invokeLater(new Runnable() {
     public void run() {
         new loginGUI().setVisible(true); // Use 'new' keyword here to create an instance of registerGUI
     }
-    });
+});
 
     // Action when Back to Login button is pressed
                                              
     
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments

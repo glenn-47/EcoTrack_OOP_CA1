@@ -9,14 +9,21 @@ import javax.swing.JOptionPane;
  * @author msi410
  */
 public class loginGUI extends javax.swing.JFrame {
- private final AuthManager authManager;
-
-    /**
-     * Creates new form loginGUI
-     */
-    public loginGUI() {
+    private final AuthManager authManager; // Shared AuthManager
+    private UserSession userSession;  // Store the logged-in user's session
+    
+    
+    public loginGUI(AuthManager authManager) {
         initComponents();
-       authManager = new AuthManager();
+        this.authManager = authManager;
+    }
+
+    loginGUI() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    loginGUI(UserSession userSession) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
   
     
@@ -118,13 +125,9 @@ public class loginGUI extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
       
-        
-        
-        
-        
-        registerGUI myGUI = new registerGUI();  
-        myGUI.setVisible(true);
-        this.dispose();      
+    registerGUI myGUI = new registerGUI(authManager); // Pass the shared instance
+    myGUI.setVisible(true);
+    this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     
@@ -132,20 +135,29 @@ public class loginGUI extends javax.swing.JFrame {
     
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String username = jTextField1.getText(); // Get username input
-        String password = new String(jPasswordField1.getPassword()); // Get password input
+      String username = jTextField1.getText().trim();
+    String password = new String(jPasswordField1.getPassword()).trim();
 
-        // Validate credentials
-        if (authManager.validateUser(username, password)) {
-            JOptionPane.showMessageDialog(this, "Login successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
+    // Validate user credentials
+    if (authManager.validateUser(username, password)) {
+        JOptionPane.showMessageDialog(this, "Login successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
 
-            // Open the Main Menu window
-            MainMenuGUI mainMenu = new MainMenuGUI();
-            mainMenu.setVisible(true);
-            this.dispose(); // Close the login window
-        } else {
-            JOptionPane.showMessageDialog(this, "Invalid username or password.", "Login Error", JOptionPane.ERROR_MESSAGE);
-        }
+        // Retrieve the user object from AuthManager using the username
+        User user = authManager.getUser(username);
+
+        // Create a new UserSession using the correct user data
+        userSession = new UserSession(user.getUsername(), user.getEmail(), user.getDateOfBirth());
+
+        // Open the Main Menu and pass the session
+        MainMenuGUI myGUI = new MainMenuGUI(userSession);
+        myGUI.setVisible(true);
+        this.dispose();
+    } else {
+        JOptionPane.showMessageDialog(this, "Invalid username or password.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    
+
+
     
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -177,11 +189,8 @@ public class loginGUI extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new loginGUI().setVisible(true);
-            }
-        });
+       
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
