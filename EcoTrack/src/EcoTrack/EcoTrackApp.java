@@ -6,17 +6,12 @@ package EcoTrack;
 
 /**
  *
- * @author fsheridan
+ * @author Abdallah, Glenn, Michael
  */
 public class EcoTrackApp {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-        loginGUI myGUI = new loginGUI();
-        myGUI.setVisible(true);
+     public static void main(String[] args) {
+        AuthManager authManager = new AuthManager(); // Shared AuthManager instance
+        new loginGUI(authManager).setVisible(true);
     }
     
 }
