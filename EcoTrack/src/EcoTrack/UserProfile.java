@@ -6,7 +6,7 @@ package EcoTrack;
 
 /**
  *
- * abdallah haouit
+ * @author Abdallah haouit
  */
 public class UserProfile {
      private String username;

@@ -6,12 +6,12 @@ package EcoTrack;
 
 /**
  *
- * @abdallh glen and michael
+ * @abdallh glen and Michael
  */
 public class MainMenuGUI extends javax.swing.JFrame {
  private UserSession userSession;  // Store the user session
 
-    public MainMenuGUI(UserSession userSession) {
+    public MainMenuGUI(UserSession userSession, Object par1) {
         this.userSession = userSession;
         initComponents();
     }
@@ -158,35 +158,35 @@ public class MainMenuGUI extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        tipsGUI myGUI = new tipsGUI();
+        Tips myGUI = new Tips();
         myGUI.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        ViewproductsGUI myGUI = new ViewproductsGUI();
+        ViewproductsGUI_1 myGUI = new ViewproductsGUI_1();
         myGUI.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-        Consuption_tracking myGUI = new Consuption_tracking();
+        Consuption_tracking_1 myGUI = new Consuption_tracking_1();
         myGUI.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        progress myGUI = new progress();
+        Progress_1 myGUI = new Progress_1();
         myGUI.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        challenge myGUI = new challenge();
+       Challenge_1 myGUI = new Challenge_1();
         myGUI.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed

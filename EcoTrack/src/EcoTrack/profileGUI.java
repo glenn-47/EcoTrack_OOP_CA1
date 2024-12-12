@@ -122,7 +122,7 @@ private final UserSession userSession;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        
     
-       MainMenuGUI myGUI = new MainMenuGUI(userSession);
+       MainMenuGUI myGUI = new MainMenuGUI(userSession, null);
         myGUI.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed

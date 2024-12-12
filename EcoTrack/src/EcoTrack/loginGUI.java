@@ -145,7 +145,7 @@ public class loginGUI extends javax.swing.JFrame {
         userSession = new UserSession(user.getUsername(), user.getEmail(), user.getDateOfBirth());
 
       
-        MainMenuGUI myGUI = new MainMenuGUI(userSession);
+        MainMenuGUI myGUI = new MainMenuGUI(userSession, null);
         myGUI.setVisible(true);
         this.dispose();
     } else {

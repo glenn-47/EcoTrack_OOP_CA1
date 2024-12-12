@@ -6,7 +6,7 @@ package EcoTrack;
 
 /**
  *
- * @author fsheridan
+ * @author Abdallah, Glenn, Michael
  */
 public class EcoTrackApp {
      public static void main(String[] args) {
